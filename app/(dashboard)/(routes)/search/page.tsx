@@ -1,7 +1,7 @@
 const SearchPage = () => {
     return (  
         <div>
-            This is a search page!
+            This is the searching pages!
         </div>
     );
 }
