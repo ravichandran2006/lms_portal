@@ -36,9 +36,9 @@ export const SidebarItem=({icon: Icon, label, href}: SidebarItemProps)=>{
                     isActive && "text-sky-700")}/>
                 {label}
             </div>
-
-
-
+            <div className={cn("ml-auto opacity-0 border-2 border-sky-700 h-full transition-all",
+            isActive && "opacity-100")}
+            />
         </button>
     )
 }
