@@ -19,6 +19,8 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import toast from "react-hot-toast";
+
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -39,8 +41,14 @@ const CreatePage = () => {
   const { isSubmitting } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-    // later: await axios.post(...)
+    try{
+        const response=await axios.post("/api/courses", values);
+        router.push(`/teacher/courses/${response.data.id}`);
+
+
+    }catch{
+        toast.error("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -88,8 +96,8 @@ const CreatePage = () => {
                 </Button>
               </Link>
 
-              <Button type="submit" disabled={isSubmitting}>
-                Create
+              <Button type="submit" disabled={!form.formState.isValid || isSubmitting}>
+                Continue
               </Button>
             </div>
           </form>
