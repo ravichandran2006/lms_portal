@@ -11,6 +11,9 @@ export async function POST(req: Request) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
+        // Test database connection first
+        await db.$connect();
+
         const course = await db.course.create({
             data: {
                 title,
@@ -21,7 +24,12 @@ export async function POST(req: Request) {
         return NextResponse.json(course);
 
     } catch (error) {
-        console.log("[COURSES]", error);
+        console.error("[COURSES] Error:", error);
+        if (error instanceof Error) {
+            return new NextResponse(`Database error: ${error.message}`, { status: 500 });
+        }
         return new NextResponse("Internal error", { status: 500 });
+    } finally {
+        await db.$disconnect();
     }
 }
