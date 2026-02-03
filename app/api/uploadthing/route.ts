@@ -1,12 +1,11 @@
-import { createRouteHandler } from "uploadthing/server";
+import { createRouteHandler } from "uploadthing/next";
 
 import { ourFileRouter } from "./core";
 
 
-const handlers = createRouteHandler({
+export const { GET, POST } = createRouteHandler({
   router: ourFileRouter,
   config: {
-    token: process.env.UPLOADTHING_TOKEN,
+    token: process.env.UPLOADTHING_SECRET,
   },
 });
-export { handlers as GET, handlers as POST };
