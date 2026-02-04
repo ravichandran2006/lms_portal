@@ -8,15 +8,6 @@ import { useRouter } from "next/navigation";
 import { PlusCircle, ImageIcon, Pencil } from "lucide-react";
 import Image from "next/image";
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
-
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import toast from "react-hot-toast";
 import { useState } from "react";
@@ -48,7 +39,6 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
     },
   });
 
-  const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
