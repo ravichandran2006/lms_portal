@@ -27,6 +27,14 @@ const CourseIdPage = async ({
     }
   });
 
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  console.log(categories);
+
   if (!course) {
     return redirect("/teacher/courses");
   }
