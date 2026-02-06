@@ -10,8 +10,6 @@ export async function POST(req: Request) {
         if (!userId) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
-        // Test database connection first
-        await db.$connect();
 
         const course = await db.course.create({
             data: {
