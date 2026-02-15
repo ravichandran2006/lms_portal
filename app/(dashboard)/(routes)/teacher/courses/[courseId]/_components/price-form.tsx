@@ -44,7 +44,7 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      price: initialData?.price ?? undefined,
+      price: initialData?.price || 0,
     },
     mode: "onChange",
   });
@@ -113,6 +113,8 @@ export const PriceForm = ({ initialData, courseId }: PriceFormProps) => {
                       disabled={isSubmitting}
                       placeholder="Set a price for your course"
                       {...field}
+                      onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                      value={field.value || 0}
                     />
                   </FormControl>
 
