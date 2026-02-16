@@ -21,7 +21,7 @@ model Course {
   categoryId String? 
   category Category? @relation(fields: [categoryId], references: [id])
 
-  attachements Attachement[]
+  attachments Attachment[]
   createdAt DateTime @default(now())  
   updatedAt DateTime @updatedAt
   @@index([categoryId])
@@ -33,7 +33,7 @@ model Category{
   courses Course[]
 }
 
-model Attachement {
+model Attachment {
   id String @id @default(uuid())
   name String
   url String @db.Text
